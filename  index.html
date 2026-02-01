@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earn Pro - @AYEN_BD7</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --purple: #9b59b6; --dark: #8e44ad; --bg: #f5f6fa; --green: #27ae60; }
+        body { font-family: 'Segoe UI', Arial; margin: 0; background: var(--bg); overflow-x: hidden; }
+        .app { max-width: 480px; margin: auto; background: white; min-height: 100vh; position: relative; padding-bottom: 80px; }
+        .header { background: linear-gradient(135deg, var(--purple), var(--dark)); color: white; padding: 25px 15px; display: flex; justify-content: space-between; align-items: center; border-radius: 0 0 20px 20px; }
+        .balance-badge { background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 30px; font-weight: bold; font-size: 18px; border: 1px solid rgba(255,255,255,0.4); display: flex; align-items: center; gap: 8px; }
+        .section { display: none; padding: 15px; animation: fadeIn 0.3s; }
+        .active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .card { background: white; border-radius: 15px; padding: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 12px; border: 1px solid #eee; }
+        .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .plan-card { background: white; border: 1px solid #eee; border-radius: 12px; padding: 12px; text-align: center; border-top: 4px solid var(--purple); box-shadow: 0 3px 6px rgba(0,0,0,0.05); }
+        .plan-card h4 { margin: 5px 0; color: var(--dark); font-size: 15px; }
+        .plan-card p { font-size: 11px; margin: 5px 0; color: #666; font-weight: bold; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .btn-main { background: var(--purple); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        .btn-buy { background: var(--green); color: white; border: none; padding: 8px; border-radius: 5px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 5px; }
+        .nav { position: fixed; bottom: 0; width: 100%; max-width: 480px; display: flex; background: white; border-top: 1px solid #eee; padding: 12px 0; }
+        .nav-link { flex: 1; text-align: center; color: #a4b0be; font-size: 11px; cursor: pointer; }
+        .nav-link.active { color: var(--purple); }
+    </style>
+</head>
+<body>
+
+<div class="app">
+    <div class="header">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:45px; height:45px; background:white; border-radius:50%; color:var(--purple); display:flex; align-items:center; justify-content:center; font-weight:bold;">S</div>
+            <div><b>Saimum</b><br><small>Premium Member</small></div>
+        </div>
+        <div class="balance-badge">৳ <span id="bal-text">0.00</span> <span style="cursor:pointer;" onclick="location.reload()">↻</span></div>
+    </div>
+
+    <div id="home" class="section active">
+        <div style="height:140px; background: linear-gradient(45deg, #e0c3fc, #8ec5fc); border-radius: 15px; margin-bottom:20px; display:flex; align-items:center; justify-content:center; color:white; font-size:20px; font-weight:bold;">WELCOME TO EARN PRO</div>
+        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; text-align:center;">
+            <div onclick="showTab('deposit')"><i class="fas fa-wallet" style="font-size:25px; color:var(--purple);"></i><p style="font-size:12px;">Deposit</p></div>
+            <div onclick="showTab('withdraw')"><i class="fas fa-money-bill-transfer" style="font-size:25px; color:var(--purple);"></i><p style="font-size:12px;">Withdraw</p></div>
+            <div onclick="showTab('plans')"><i class="fas fa-gem" style="font-size:25px; color:var(--purple);"></i><p style="font-size:12px;">Plan</p></div>
+            <div onclick="showTab('task')"><i class="fas fa-tasks" style="font-size:25px; color:var(--purple);"></i><p style="font-size:12px;">My Task</p></div>
+            <div onclick="showTab('profile')"><i class="fas fa-user-circle" style="font-size:25px; color:var(--purple);"></i><p style="font-size:12px;">Profile</p></div>
+            <div onclick="window.location.href='https://t.me/AYEN_BD7'"><i class="fab fa-telegram" style="font-size:25px; color:#0088cc;"></i><p style="font-size:12px;">Helpline</p></div>
+        </div>
+    </div>
+
+    <div id="plans" class="section">
+        <h3 style="text-align:center;">All VIP Plans</h3>
+        <div class="plan-grid">
+            <div class="plan-card"><h4>Basic</h4><p>Price: ৳500<br>Daily: ৳300</p><button class="btn-buy">BUY</button></div>
+            <div class="plan-card"><h4>Diamond</h4><p>Price: ৳1000<br>Daily: ৳600</p><button class="btn-buy">BUY</button></div>
+            <div class="plan-card"><h4>VIP 1</h4><p>Price: ৳2000<br>Daily: ৳1200</p><button class="btn-buy">BUY</button></div>
+            <div class="plan-card"><h4>VIP 2</h4><p>Price: ৳3000<br>Daily: ৳2000</p><button class="btn-buy">BUY</button></div>
+            <div class="plan-card"><h4>VIP 3</h4><p>Price: ৳5000<br>Daily: ৳3000</p><button class="btn-buy">BUY</button></div>
+            <div class="plan-card"><h4>VIP 4</h4><p>Price: ৳10000<br>Daily: ৳6500</p><button class="btn-buy">BUY</button></div>
+            <div class="plan-card"><h4>Super VIP</h4><p>Price: ৳25000<br>Daily: ৳18000</p><button class="btn-buy" style="background:#e67e22;">BUY</button></div>
+        </div>
+    </div>
+
+    <div id="task" class="section">
+        <div class="card" style="text-align:center;">
+            <p id="t-count" style="font-weight:bold; color:var(--purple);">টাস্ক নং: ১/৫০</p>
+            <h4 id="q-text">লোড হচ্ছে...</h4>
+            <input type="text" id="ans-input" placeholder="উত্তর লিখুন">
+            <button class="btn-main" onclick="checkTask()">জমা দিন</button>
+            <p id="res-msg" style="margin-top:10px; font-weight:bold;"></p>
+        </div>
+    </div>
+
+    <div id="withdraw" class="section">
+        <div style="background:#fff5f5; color:#e74c3c; padding:12px; border-radius:10px; border:1px solid #feb2b2; margin-bottom:15px; font-size:13px; font-weight:bold; text-align:center;">
+            ⚠️ টাকা তুলতে কমপক্ষে ৫০০ টাকা ডিপোজিট থাকতে হবে।
+        </div>
+        <div class="card">
+            <p>বর্তমান ব্যালেন্স: ৳ <span id="with-bal">0.00</span></p>
+            <input type="number" id="with-amount" placeholder="পরিমাণ">
+            <input type="number" id="with-phone" placeholder="বিকাশ/নগদ নাম্বার">
+            <button class="btn-main" style="background:#e67e22;" onclick="handleWithdraw()">উইথড্র রিকোয়েস্ট</button>
+        </div>
+    </div>
+
+    <div id="deposit" class="section">
+        <div class="card" style="text-align:center;">
+            <p>বিকাশ/নগদ (সেন্ড মানি):</p>
+            <h2 style="color:var(--dark);">+8801998460468</h2>
+            <input type="number" id="depo-amount" placeholder="টাকার পরিমাণ (মিন. ৫০০)">
+            <input type="text" id="depo-trx" placeholder="TrxID (ট্রানজেকশন আইডি)">
+            <button class="btn-main" onclick="alert('আপনার TrxID যাচাই করা হচ্ছে!')">কনফার্ম ডিপোজিট</button>
+        </div>
+    </div>
+
+    <div id="profile" class="section">
+        <div class="card" style="text-align:center;">
+            <div style="width:70px; height:70px; background:var(--purple); border-radius:50%; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold; margin: auto;">S</div>
+            <h2>Saimum</h2>
+            <p>Phone: +8801998460468</p>
+            <button class="btn-main" style="background:#e74c3c; margin-top:15px;" onclick="localStorage.clear(); location.reload();">লগ আউট</button>
+        </div>
+    </div>
+
+    <div class="nav">
+        <div class="nav-link active" onclick="showTab('home', this)"><i class="fas fa-home"></i><br>Home</div>
+        <div class="nav-link" onclick="showTab('plans', this)"><i class="fas fa-layer-group"></i><br>Plans</div>
+        <div class="nav-link" onclick="showTab('task', this)"><i class="fas fa-tasks"></i><br>Tasks</div>
+        <div class="nav-link" onclick="showTab('profile', this)"><i class="fas fa-user-circle"></i><br>Profile</div>
+    </div>
+</div>
+
+<script>
+    let bal = localStorage.getItem('s_bal') ? parseFloat(localStorage.getItem('s_bal')) : 115.00;
+    let qIdx = localStorage.getItem('s_qIdx') ? parseInt(localStorage.getItem('s_qIdx')) : 0;
+
+    const quiz = [
+        {q: "বাংলাদেশের জাতীয় ফুল কি?", a: ["শাপলা"]},
+        {q: "বাংলাদেশের জাতীয় পাখি কি?", a: ["দোয়েল", "দোয়েল"]},
+        {q: "বাংলাদেশের জাতীয় পশু কোনটি?", a: ["বাঘ", "রয়েল বেঙ্গল টাইগার", "টাইগার", "tiger"]},
+        {q: "১০ + ১০ কত হয়?", a: ["২০", "20"]}
+    ];
+
+    function updateUI() {
+        document.getElementById('bal-text').innerText = bal.toFixed(2);
+        document.getElementById('with-bal').innerText = bal.toFixed(2);
+        if(quiz[qIdx]) {
+            document.getElementById('q-text').innerText = quiz[qIdx].q;
+            document.getElementById('t-count').innerText = `টাস্ক নং: ${qIdx+1}/৫০`;
+        } else {
+            document.getElementById('q-text').innerText = "আজকের টাস্ক শেষ!";
+            document.getElementById('ans-input').style.display = "none";
+        }
+        localStorage.setItem('s_bal', bal);
+        localStorage.setItem('s_qIdx', qIdx);
+    }
+
+    function showTab(id, el) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        if(el) {
+            document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+            el.classList.add('active');
+        }
+    }
+
+    function checkTask() {
+        let val = document.getElementById('ans-input').value.trim().toLowerCase();
+        let match = false;
+        quiz[qIdx].a.forEach(a => { if(val.includes(a.toLowerCase())) match = true; });
+
+        if(match) {
+            bal += 5; qIdx++;
+            document.getElementById('res-msg').innerText = "সঠিক! ৫ টাকা যোগ হয়েছে।";
+            document.getElementById('res-msg').style.color = "green";
+            setTimeout(() => {
+                document.getElementById('ans-input').value = "";
+                document.getElementById('res-msg').innerText = "";
+                updateUI();
+            }, 1000);
+        } else {
+            document.getElementById('res-msg').innerText = "ভুল উত্তর! সঠিক উত্তর দিন।";
+            document.getElementById('res-msg').style.color = "red";
+        }
+    }
+
+    function handleWithdraw() {
+        let amount = parseFloat(document.getElementById('with-amount').value);
+        if(amount > bal) {
+            alert("পর্যাপ্ত ব্যালেন্স নেই!");
+        } else if(isNaN(amount) || amount <= 0) {
+            alert("সঠিক পরিমাণ লিখুন।");
+        } else {
+            bal -= amount; // টাকা কেটে নেওয়া হবে
+            updateUI();
+            alert("উইথড্র রিকোয়েস্ট পাঠানো হয়েছে। ব্যালেন্স থেকে " + amount + " টাকা কাটা হয়েছে।");
+        }
+    }
+
+    updateUI();
+</script>
+</body>
+</html>
